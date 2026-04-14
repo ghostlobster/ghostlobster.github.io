@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@layer base {
+  :root,
+  [data-theme="terminal"] {
+    --background: #0c0c0c;
+    --foreground: #00ff00;
+    --primary: #00ff00;
+    --primary-foreground: #0c0c0c;
+    --muted: rgba(0, 255, 0, 0.1);
+    --muted-foreground: #00aa00;
+    --border: #00ff00;
+    --card: rgba(0, 255, 0, 0.05);
+    --font-mono: "Courier New", Courier, monospace;
+    --body-bg-image: none;
+    --body-padding: 0;
+  }
+
+  [data-theme="cyberpunk"] {
+    --background: #0a0a1a;
+    --foreground: #e0e0ff;
+    --primary: #00ffff;
+    --primary-foreground: #0a0a1a;
+    --muted: rgba(20, 20, 40, 0.8);
+    --muted-foreground: #8888aa;
+    --border: #ff00ff;
+    --card: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(20,20,40,0.9));
+    --font-mono: 'Share Tech Mono', monospace;
+    --body-bg-image: linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+    --body-bg-size: 20px 20px;
+    --body-padding: 0;
+  }
+
+  [data-theme="retro"] {
+    --background: #0000aa;
+    --foreground: #ffffff;
+    --primary: #ffff00;
+    --primary-foreground: #0000aa;
+    --muted: #00aaaa;
+    --muted-foreground: #aaaaaa;
+    --border: #ffffff;
+    --card: #0000aa;
+    --font-mono: 'Consolas', 'Monaco', 'Lucida Console', monospace;
+    --body-bg-image: none;
+    --body-padding: 2rem;
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-mono);
+    background-image: var(--body-bg-image);
+    background-size: var(--body-bg-size, auto);
+    padding: var(--body-padding);
+    min-height: 100vh;
+  }
+}
+
+/* Custom Typography Based on Theme */
+[data-theme="terminal"] .title-text {
+  border-bottom: 1px solid var(--primary);
+  padding-bottom: 0.5rem;
+  font-weight: normal;
+}
+
+[data-theme="cyberpunk"] .title-text {
+  color: #ff00ff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+  position: relative;
+}
+[data-theme="cyberpunk"] .title-text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100px;
+  height: 3px;
+  background-color: #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+[data-theme="retro"] .layout-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: var(--background);
+    border: 2px solid var(--border);
+    padding: 2px;
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="retro"] .title-text {
+    background-color: var(--border);
+    color: var(--background);
+    text-align: center;
+    padding: 0.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* GitHub Card Theme Specifics */
+[data-theme="cyberpunk"] .cyberpunk-accent {
+    display: block;
+}
+
+[data-theme="retro"] .retro-header {
+    display: inline-block;
+    position: static;
+    margin-top: -1.5rem;
+    margin-left: -0.5rem;
+}
+[data-theme="retro"] .github-card {
+    padding-top: 1.5rem;
+}
