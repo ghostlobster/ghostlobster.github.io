@@ -3,7 +3,14 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { MatrixRain } from "@/components/MatrixRain";
 import { InteractiveTerminal } from "@/components/InteractiveTerminal";
+import { Share_Tech_Mono } from 'next/font/google';
 import "./globals.css";
+
+const shareTechMono = Share_Tech_Mono({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-share-tech-mono',
+});
 
 export const metadata: Metadata = {
   title: "My Personal Blog",
@@ -16,12 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-          <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" suppressHydrationWarning className={shareTechMono.variable}>
       <body>
         <ThemeProvider attribute="data-theme" defaultTheme="terminal" themes={['terminal', 'cyberpunk', 'retro']}>
           <div className="layout-container min-h-screen flex flex-col relative z-0">

@@ -3,6 +3,7 @@ import path from 'path';
 import { notFound } from 'next/navigation';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import { GitHubPreview } from '@/components/GitHubPreview';
+import Link from 'next/link';
 
 export async function generateStaticParams() {
   const postsDirectory = path.join(process.cwd(), 'content/posts');
@@ -42,9 +43,9 @@ export default async function Post({ params }: { params: { slug: string } }) {
         {content}
       </div>
       <div className="mt-12 pt-4 border-t border-border/50 text-sm">
-          <a href="/" className="text-primary hover:underline flex items-center gap-2">
+          <Link href="/" className="text-primary hover:underline flex items-center gap-2">
             <span>&lt;-</span> RETURN TO ROOT
-          </a>
+          </Link>
       </div>
     </article>
   );
