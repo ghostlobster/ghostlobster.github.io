@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { MatrixRain } from "@/components/MatrixRain";
@@ -35,6 +36,7 @@ export default function RootLayout({
               <InteractiveTerminal />
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
